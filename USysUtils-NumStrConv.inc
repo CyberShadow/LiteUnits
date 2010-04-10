@@ -77,6 +77,9 @@ begin
 end;
 
 function StrToInt(AStr:string):Integer;
+var
+ LCode:Integer;
 begin
- Result:=StrToIntDef(AStr);
+ Val(AStr,Result,LCode);
+ if LCode<>0 then Error('Invalid integer: ' + AStr);
 end;
