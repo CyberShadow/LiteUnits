@@ -104,6 +104,7 @@ function Trim(AStr:string):string;
 function StrReplace(AStr:string;ASubStr,ANewStr:string;ACaseSens:Boolean=False):string;
 
 function SysErrorMessage(ErrorCode: Integer): string;
+procedure Error(Msg: String = 'Unspecified error'; Code: Integer = 1);
 
 implementation
 type
@@ -474,6 +475,12 @@ begin
     SizeOf(Buffer), nil);
   while (Len > 0) and (Buffer[Len - 1] in [#0..#32, '.']) do Dec(Len);
   SetString(Result, Buffer, Len);
+end;
+
+procedure Error(Msg: String = 'Unspecified error'; Code: Integer = 1);
+begin
+  WriteLn(Msg);
+  Halt(Code);
 end;
 
 end.
